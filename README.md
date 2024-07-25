@@ -116,6 +116,12 @@ npm run dev:plasmo
 ```
 
 
+
+## References
+
+* Bookmarks Manager from [pintree](https://github.com/Pintree-io/pintree)
+
+
 ## Starchart
 
 [![Star History Chart](https://api.star-history.com/svg?repos=hzeyuan/bookmarksAI&type=Date)](https://star-history.com/#hzeyuan/bookmarksAI&Date)
