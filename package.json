@@ -27,6 +27,7 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@visactor/react-vchart": "^1.11.9",
     "class-variance-authority": "^0.7.0",
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.3.7",
