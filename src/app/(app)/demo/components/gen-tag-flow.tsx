@@ -22,7 +22,7 @@ export const GenTagFlow = ({ ...props }) => {
     }, [bookmarks])
 
     const containerRef = useRef(null);
-    // const tags = useTagsStore((state) => state.tags);
+    const tags = useTagsStore((state) => state.tags);
     const tagCloudRef = useRef<TagCloudHandle>(null);
 
 
@@ -87,7 +87,7 @@ export const GenTagFlow = ({ ...props }) => {
                 readyAndUpdateCloud();
             }, 1000);
         }
-    }, [useTagsStore.getState().tags, tagCloudRef])
+    }, [tags, tagCloudRef])
 
     return (
         <>
