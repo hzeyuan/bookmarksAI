@@ -4,6 +4,7 @@
 <img src="assets/icon.png" width="32" >
 <h1>Bookmarks AI</h1>
 
+[Youtube](https://youtu.be/N_WBvHpVFQU)
 
 [![][vercel-shield]][vercel-link]
 
@@ -42,13 +43,16 @@
 
 ⚡ **Bookmarks AI** is a tool that uses AI to organize and record your bookmarks. 
 
+## Project Background
+
 <div align="center">
 <img src="assets/ai-auto-organize-bookmarks.gif" width="600" >
 </div>
 
 
 
-## Project Background
+
+
 
 1. Messy bookmarks? Struggle is real!
 2. too many websites to remember and find later!
