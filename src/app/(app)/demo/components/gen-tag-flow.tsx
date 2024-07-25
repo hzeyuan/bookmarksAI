@@ -68,12 +68,12 @@ export const GenTagFlow = ({ ...props }) => {
     }, [processedBookmarks]);
 
     useEffect(() => {
-        const currentTags = useTagsStore.getState().tags;
-        const newTags = _.map(_.groupBy(currentTags, 'category'), (value, key) => ({
-            category: key,
-            category_count: value.length,
-        }));
         const readyAndUpdateCloud = () => {
+            const currentTags = useTagsStore.getState().tags;
+            const newTags = _.map(_.groupBy(currentTags, 'category'), (value, key) => ({
+                category: key,
+                category_count: value.length,
+            }));
             console.log('newTags', newTags);
             if (tagCloudRef.current?.getVChartInstance()) {
                 handleUpdateCloudWithThrottle(newTags);
