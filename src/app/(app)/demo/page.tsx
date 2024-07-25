@@ -377,7 +377,7 @@ const Page = () => {
                 </AlertDialogContent>
             </AlertDialog>
             <LoadingSpinner
-                text={'Please wait...'}
+                text={'Please wait... about 30s to generate new structure'}
                 className="mr-2 h-4 w-4 animate-spin"
                 isLoading={loading}>
             </LoadingSpinner>

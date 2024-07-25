@@ -12,6 +12,7 @@ export async function POST(req: NextRequest) {
         streaming: false,
         maxRetries: 2,
         maxTokens: 500,
+        apiKey: input?.config?.apiKey || process.env.OPENAI_API_KEY!,
     }, {
         apiKey: input?.config?.apiKey || process.env.OPENAI_API_KEY!,
         baseURL: input?.config?.apiBaseUrl || process.env.OPENAI_BASE_URL,

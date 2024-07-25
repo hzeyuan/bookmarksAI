@@ -92,7 +92,7 @@ export const handleGenerateTagsAgent = async (
     model: ChatOpenAI,
     config?: { apiKey: string, apiBaseUrl: string },
 ) => {
-    
+
     const categories = input.categories;
     console.log('准备处理tag', input.text)
 
@@ -110,7 +110,7 @@ export const handleGenerateTagsAgent = async (
             modelName: 'gpt-4o-mini',
             streaming: false,
             maxRetries: 2,
-
+            apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
         }, {
             apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
             baseURL: config?.apiBaseUrl || process.env.OPENAI_BASE_URL,
@@ -134,9 +134,9 @@ export const handleGenerateTagsAgent = async (
             modelName: 'gpt-4o-mini',
             streaming: false,
             maxRetries: 2,
-
+            apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
         }, {
-            apiKey: process.env.OPENAI_API_KEY!,
+            apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
             baseURL: process.env.OPENAI_BASE_URL,
         }),
         new StringOutputParser()
@@ -158,8 +158,8 @@ export const handleGenerateTagsAgent = async (
                         text: data.text,
                         firstAnalysis: data.firstAnalysis,
                         tags: data.tags,
-                        language: language || 'English',
-                        contentType: contentType || 'Browser Bookmark'
+                        language: input?.language || 'English',
+                        contentType: input?.contentType || 'Browser Bookmark'
                     };
                 },
                 generateTagsPrompt,
@@ -180,8 +180,8 @@ export const handleGenerateTagsAgent = async (
     try {
         const result = await chain.invoke({
             text: input.text,
-            language: language || 'English',
-            contentType: contentType || 'Browser Bookmark'
+            language: input?.language || 'English',
+            contentType: input?.contentType || 'Browser Bookmark'
         });
         return {
             tags: result.tags,
