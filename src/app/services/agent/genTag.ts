@@ -137,7 +137,7 @@ export const handleGenerateTagsAgent = async (
             apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
         }, {
             apiKey: config?.apiKey || process.env.OPENAI_API_KEY!,
-            baseURL: process.env.OPENAI_BASE_URL,
+            baseURL: config?.apiBaseUrl || process.env.OPENAI_BASE_URL,
         }),
         new StringOutputParser()
     ]);
