@@ -61,6 +61,30 @@ const Page = () => {
     const markmapRef = useRef<MarkmapHooksRef>(null);
     const folders = useBookmarkStore((state) => state.folders);
     const router = useRouter();
+    const isInstalledRef = useRef(false);
+
+
+    const checkExtension = () => {
+        window.postMessage({ type: "CHECK_BOOKMARK_AI_EXTENSION" }, "*");
+    };
+    useEffect(() => {
+        console.debug("Checking if extension is installed");
+        const handleMsg = (event) => {
+            console.log("Received message", event);
+            if (event?.data?.body && event.data.body.type === "BOOKMARK_AI_EXTENSION") {
+                if (event?.data?.name === "is_installed") {
+                    // sessionStorage.setItem("extensionInstalled", "true");
+                    isInstalledRef.current = true;
+                    console.log("Extension is installed!");
+                }
+            }
+        }
+        window.addEventListener("message", handleMsg);
+        checkExtension();
+        return () => {
+            window.removeEventListener("message", handleMsg);
+        };
+    }, [])
 
 
     const handleGenerateTags = async (newBookmarks: DDBookmarkTreeNode[], curFolders: string[]) => {
@@ -144,6 +168,7 @@ const Page = () => {
             toast.error('generate new bookmark structure failed', {
                 description: 'please check try again',
             })
+            return [];
         } finally {
             setLoading(false);
         }
@@ -151,7 +176,7 @@ const Page = () => {
 
     const handleWorkflowStart = async () => {
         console.log('handleWorkflowStart');
-        if (sessionStorage.getItem('extensionInstalled') !== 'true') {
+        if (isInstalledRef.current === false) {
             window.open('/extension', '_blank');
             toast.error('Please install the chrome extension first');
             return;
@@ -188,6 +213,10 @@ const Page = () => {
                 folders: curFolders,
                 bookmarks: bookmarkArray,
             });
+
+            if (newFolders.length === 0) {
+                return;
+            }
 
             toast.info(`1.generate new folders`, {
                 description: 'Now, we will generate new folders for each bookmark',
@@ -330,7 +359,7 @@ const Page = () => {
             <AlertDialog open={open}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>rebuild  bookmarks </AlertDialogTitle>
+                        <AlertDialogTitle>Sync to Chrome  bookmarks </AlertDialogTitle>
                         <AlertDialogDescription>
                             If you Press the confirm, new rebuild bookmarks will be sync to Chrome Bookmarks,
                             it not reversible, please make sure you have a backup.
@@ -357,7 +386,7 @@ const Page = () => {
                     AI Bookmarks Demo
                 </h3>
                 <div className="flex gap-x-2">
-                    <Button onClick={() => { handleWorkflowStart() }}>Start Rebuild</Button>
+                    <Button onClick={() => { handleWorkflowStart() }}>Start build</Button>
                     <Button className="bg-[mediumpurple]"
                         onClick={() => setOpen(true)}>Async to Chrome Bookmarks</Button>
                     <Button variant="destructive" onClick={() => { initWorkflow() }}>Clear Local Record</Button>

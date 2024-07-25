@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
         modelName: 'gpt-4o-mini',
         streaming: false,
         maxRetries: 2,
+        apiKey: input?.config?.apiKey || process.env.OPENAI_API_KEY!,
     }, {
         apiKey: input?.config?.apiKey || process.env.OPENAI_API_KEY!,
         baseURL: input?.config?.apiBaseUrl || process.env.OPENAI_BASE_URL,

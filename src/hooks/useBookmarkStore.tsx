@@ -30,7 +30,6 @@ export interface DDBookmarkTreeNode extends Bookmarks.BookmarkTreeNode {
 
 
 interface BookmarkStore {
-    isMock: boolean;
     folders: Bookmarks.BookmarkTreeNode[];
     bookmarks: DDBookmarkTreeNode[];
     setBookmarks: (bookmarks: DDBookmarkTreeNode[]) => void;
@@ -51,7 +50,6 @@ interface BookmarkStore {
 export const useBookmarkStore = create(
     persist<BookmarkStore>(
         (set, get) => ({
-            isMock: true,
             folders: [],
             bookmarks: [],
             setFolder: (folders) => set({ folders }),
