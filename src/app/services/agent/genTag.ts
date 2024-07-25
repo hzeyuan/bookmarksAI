@@ -90,12 +90,7 @@ const generateTagsPrompt = ChatPromptTemplate.fromMessages([
 export const handleGenerateTagsAgent = async (
     input: GenerateTagsAgentChainInput,
     model: ChatOpenAI,
-    language?: string,
-    contentType?: string,
-    config?: {
-        apiKey: string
-        apiBaseUrl: string
-    }
+    config?: { apiKey: string, apiBaseUrl: string },
 ) => {
     
     const categories = input.categories;

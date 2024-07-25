@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useEffect } from "react"
 import * as _ from 'lodash-es';
 import { Guide } from "./components/Guide";
 import { How2Work } from "./components/HowToWork";
@@ -9,6 +9,7 @@ import LazyLoadAnimatedSection from "./components/LazyLoadAnimatedSection";
 import { MockDemo } from "./components/mock-demo";
 
 const HomePage = () => {
+
     return (
         // <LazyMotion features={domAnimation}>
         <div>
@@ -22,7 +23,7 @@ const HomePage = () => {
                     <How2Work />
                 </LazyLoadAnimatedSection>
 
-              
+
                 <MockDemo></MockDemo>
 
                 <LazyLoadAnimatedSection>

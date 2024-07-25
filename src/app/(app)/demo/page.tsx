@@ -65,7 +65,7 @@ const Page = () => {
 
     const handleGenerateTags = async (newBookmarks: DDBookmarkTreeNode[], curFolders: string[]) => {
         const userLanguage = navigator.language;
-        const limit = pLimit(15);
+        const limit = pLimit(10);
         const processBookmark = async (bookmark, index) => {
             console.log('开始生成tag:', bookmark);
             let result;
@@ -92,6 +92,7 @@ const Page = () => {
 
             toast.info(`generate tags for ${bookmark.title}`, {
                 description: `tags: ${newTagStringArray.join(',')}`,
+                duration: 2000,
             })
 
             const folders = useBookmarkStore.getState().folders;
@@ -140,7 +141,9 @@ const Page = () => {
             })
             return newFolder;
         } catch (error) {
-            throw error;
+            toast.error('generate new bookmark structure failed', {
+                description: 'please check try again',
+            })
         } finally {
             setLoading(false);
         }
@@ -148,25 +151,11 @@ const Page = () => {
 
     const handleWorkflowStart = async () => {
         console.log('handleWorkflowStart');
-
-        const isInstalled = await Promise.race([
-            sendToBackgroundViaRelay({
-                name: 'is_installed',
-            }),
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(false);
-                }, 2000);
-            })
-        ]);
-
-        console.log('isInstalled', isInstalled);
-        if (!isInstalled) {
+        if (sessionStorage.getItem('extensionInstalled') !== 'true') {
             window.open('/extension', '_blank');
             toast.error('Please install the chrome extension first');
             return;
         }
-
         const storedApiKey = localStorage.getItem('apikey');
         const storedApiBaseUrl = localStorage.getItem('apiBaseUrl');
 

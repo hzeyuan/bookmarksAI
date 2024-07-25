@@ -28,9 +28,6 @@ export const requestGenerateNewFolder: HandleGenerateNewFolder = async ({
         })
     }).then(res => res.json()).then(data => {
         return data.result as string;
-    }).catch(err => {
-        console.error(err);
-        return '';
     })
 
 }

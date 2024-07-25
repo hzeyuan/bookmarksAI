@@ -177,15 +177,15 @@ export const handleGenerateFolderAgent = async (
 ) => {
     let { model, stream } = options || {};
 
-    model = model || new ChatOpenAI({
-        temperature: 0,
-        modelName: 'gpt-4o-mini',
-        streaming: stream,
-        maxRetries: 2,
-    }, {
-        apiKey: process.env.OPENAI_API_KEY!,
-        baseURL: process.env.OPENAI_BASE_URL,
-    });
+    // model = model || new ChatOpenAI({
+    //     temperature: 0,
+    //     modelName: 'gpt-4o-mini',
+    //     streaming: stream,
+    //     maxRetries: 2,
+    // }, {
+    //     apiKey: process.env.OPENAI_API_KEY!,
+    //     baseURL: process.env.OPENAI_BASE_URL,
+    // });
 
     const bookmarksStr = input.allBookmarks ? transformBookmarks2Md(input.allBookmarks).join('\n') : '';
 

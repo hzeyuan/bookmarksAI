@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
         text,
         categories: input.categories,
         language: input.language,
-    }, model);
+    }, model, {
+        apiKey: input?.config?.apiKey || process.env.OPENAI_API_KEY!,
+        apiBaseUrl: input?.config?.apiBaseUrl || process.env.OPENAI_BASE
+    });
     console.log('生成的tag为', result);
     return NextResponse.json({ result: result });
 }
