@@ -70,7 +70,7 @@ const Page = () => {
     useEffect(() => {
         console.debug("Checking if extension is installed");
         const handleMsg = (event) => {
-            console.log("Received message", event);
+            // console.log("Received message", event);
             if (event?.data?.body && event.data.body.type === "BOOKMARK_AI_EXTENSION") {
                 if (event?.data?.name === "is_installed") {
                     // sessionStorage.setItem("extensionInstalled", "true");

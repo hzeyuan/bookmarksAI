@@ -22,7 +22,7 @@ export const GenTagFlow = ({ ...props }) => {
     }, [bookmarks])
 
     const containerRef = useRef(null);
-    const tags = useTagsStore((state) => state.tags);
+    // const tags = useTagsStore((state) => state.tags);
     const tagCloudRef = useRef<TagCloudHandle>(null);
 
 
@@ -59,7 +59,7 @@ export const GenTagFlow = ({ ...props }) => {
     const handleUpdateCloudWithThrottle = useCallback(_.throttle(handleUpdateCloud, 1800), [tagCloudRef]);
 
     const progressValue = useMemo(() => {
-        console.log('bookmarks', bookmarks, processedBookmarks, bookmarks.filter(b => !b.isTagged));
+        // console.log('bookmarks', bookmarks, processedBookmarks, bookmarks.filter(b => !b.isTagged));
         return (processedBookmarks.length / bookmarks.length) || 0;
     }, [processedBookmarks.length, bookmarks.length])
 
@@ -68,11 +68,13 @@ export const GenTagFlow = ({ ...props }) => {
     }, [processedBookmarks]);
 
     useEffect(() => {
-        const newTags = _.map(_.groupBy(tags, 'category'), (value, key) => ({
+        const currentTags = useTagsStore.getState().tags;
+        const newTags = _.map(_.groupBy(currentTags, 'category'), (value, key) => ({
             category: key,
             category_count: value.length,
         }));
         const readyAndUpdateCloud = () => {
+            console.log('newTags', newTags);
             if (tagCloudRef.current?.getVChartInstance()) {
                 handleUpdateCloudWithThrottle(newTags);
                 return true;
@@ -85,7 +87,7 @@ export const GenTagFlow = ({ ...props }) => {
                 readyAndUpdateCloud();
             }, 1000);
         }
-    }, [tags, tagCloudRef])
+    }, [useTagsStore.getState().tags, tagCloudRef])
 
     return (
         <>
