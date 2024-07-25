@@ -70,7 +70,7 @@ a tool is required to organize bookmarks, keep track of daily websites, and prov
 ## How to Works
 
 1. Obtain your bookmark list through a plugin.
-2. Use AI to analyze and create an outline, establishing a new directory structure.
+2. Use AI(gpt4o-mini) to analyze and create an outline, establishing a new directory structure.
 
 3. For each bookmark, perform the following operations:
    a. Use AI analysis to add tags to the bookmark.
@@ -87,7 +87,7 @@ This information is known only to you and won't be leaked. In the future, you ca
 ## [How to Use ](https://bookmarks-ai.vercel.app/extension)
 
 1. Install the plugin
-2. Fill in your key
+2. Fill in your key,we use gpt4o-mini
 3. Click run
 
 ## Roadmap
@@ -95,6 +95,7 @@ This information is known only to you and won't be leaked. In the future, you ca
 1. Analyze daily browsing history and provide a daily reading report.
 2. Query function to quickly find the website you want.
 3. Data export, allowing export in Q&A format for easy model training.
+4. chrome history graph RAG
 
 ## Development Guide
 
