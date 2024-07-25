@@ -3,12 +3,48 @@
 <div align="center">
 <img src="assets/icon.png" width="32" >
 <h1>Bookmarks AI</h1>
-    </div>
+
+
+[![][vercel-shield]][vercel-link]
+
+[![][share-x-shield]][share-x-link]
+[![][share-whatsapp-shield]][share-whatsapp-link]
+[![][share-reddit-shield]][share-reddit-link]
+[![][share-weibo-shield]][share-weibo-link]
+
+[![][share-linkedin-shield]][share-linkedin-link]
+
+
+[github-issues-link]: https://github.com/hzeyuan/bookmarksAI/issues
+[github-contributors-shield]: https://img.shields.io/github/contributors/hzeyuan/OpenGPTS?color=c4f042&labelColor=black&style=flat-square
+[github-contributors-link]: https://github.com/hzeyuan/OpenGPTS/graphs/contributors
+
+
+[vercel-link]: https://bookmarks-ai.vercel.app
+[vercel-shield]: https://img.shields.io/website?down_message=offline&label=vercel&labelColor=black&logo=vercel&style=flat-square&up_message=online&url=https://bookmarks-ai.vercel.app
+[share-linkedin-link]: https://linkedin.com/feed
+[share-linkedin-shield]: https://img.shields.io/badge/-share%20on%20linkedin-black?labelColor=black&logo=linkedin&logoColor=white&style=flat-square
+
+
+[share-reddit-link]: https://www.reddit.com/submit?title=bookmarksAI&url=https://github.com/hzeyuan/bookmarksAI
+[share-reddit-shield]: https://img.shields.io/badge/-share%20on%20reddit-black?labelColor=black&logo=reddit&logoColor=white&style=flat-square
+[share-telegram-link]: https://t.me/share/url?text=bookmarksAI&url=https://github.com/hzeyuan/bookmarksAI
+[share-telegram-shield]: https://img.shields.io/badge/-share%20on%20telegram-black?labelColor=black&logo=telegram&logoColor=white&style=flat-square
+[share-weibo-link]: http://service.weibo.com/share/share.php?sharesource=weibo&title=bookmarksAI
+[share-weibo-shield]: https://img.shields.io/badge/-share%20on%20weibo-black?labelColor=black&logo=sinaweibo&logoColor=white&style=flat-square
+[share-whatsapp-link]: https://api.whatsapp.com/send?text=bookmarksAI
+[share-whatsapp-shield]: https://img.shields.io/badge/-share%20on%20whatsapp-black?labelColor=black&logo=whatsapp&logoColor=white&style=flat-square
+[share-x-link]: https://x.com/intent/tweet?hashtags=chatbot%2CchatGPT%2CopenAI&url=https://github.com/hzeyuan/bookmarksAI
+[share-x-shield]: https://img.shields.io/badge/-share%20on%20x-black?labelColor=black&logo=x&logoColor=white&style=flat-square
+
+</div>
 
 
 ⚡ **Bookmarks AI** is a tool that uses AI to organize and record your bookmarks. 
 
-<img src="assets/ai-auto-organize-bookmarks.gif" width="100%" >
+<div align="center">
+<img src="assets/ai-auto-organize-bookmarks.gif" width="600" >
+</div>
 
 
 
@@ -74,3 +110,9 @@ npm run dev:next
 # Run plugin
 npm run dev:plasmo
 ```
+
+
+## Starchart
+
+[![Star History Chart](https://api.star-history.com/svg?repos=hzeyuan/bookmarksAI&type=Date)](https://star-history.com/#hzeyuan/bookmarksAI&Date)
+
