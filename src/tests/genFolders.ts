@@ -29,6 +29,7 @@ console.group('process.env.OPENAI_BASE_URL', process.env.OPENAI_BASE_URL)
         const res = await handleGenerateFolderAgent({
             folders,
             // bookmarks,
+            language: 'zh',
         }, {
             model,
             json: false,
@@ -36,8 +37,10 @@ console.group('process.env.OPENAI_BASE_URL', process.env.OPENAI_BASE_URL)
         }) as string;
         console.log('res', res);
 
+        // let s = ''
         // for await (const chunk of res) {
-        //     console.log(chunk);
+        //     s += chunk
+        //     console.log(s);
         // }
 
         // const res = "```\n# 主类别\n## 游戏资源\n### 待玩耍\n### 游戏源码\n## 开发工具\n### 前端\n### 后端\n#### Go\n#### Python\n## 职业发展\n### 内推\n### 教程网址等\n## 技术领域\n### AI\n### 电商\n## 日常工具\n### 微信\n### 移动设备书签\n## 其他\n### 其他书签\n### 新建文件夹\n```\n\n由于提供的书签列表为 \"undefined\"，无法进行具体的分类和调整。因此，新的文件夹结构与现有的文件夹结构保持一致。如果有具体的书签列表，可以进一步进行分类和调整。"
