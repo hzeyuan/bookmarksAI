@@ -1,33 +1,76 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+<a name="readme-top"></a>
 
-## Getting Started
+<div align="center">
+<img src="assets/icon.png" width="32" >
+<h1>Bookmarks AI</h1>
+    </div>
 
-First, run the development server:
+
+⚡ **Bookmarks AI** is a tool that uses AI to organize and record your bookmarks. 
+
+<img src="assets/ai-auto-organize-bookmarks.gif" width="100%" >
+
+
+
+## Project Background
+
+1. Messy bookmarks? Struggle is real!
+2. too many websites to remember and find later!
+3. chat ui and Chrome history are separate, and it's a hassle to toggle between them, I hope AI can know what website I looked at a minute ago。
+4. Integrating your browser history, ensuring your data is yours alone, and creating a personalized AI just for you.
+
+
+
+<strong>If you also face these challenges:</strong>
+<br/>
+a tool is required to organize bookmarks, keep track of daily websites, and provide easy access to desired sites
+
+
+
+## How to Works
+
+1. Obtain your bookmark list through a plugin.
+2. Use AI to analyze and create an outline, establishing a new directory structure.
+
+3. For each bookmark, perform the following operations:
+   a. Use AI analysis to add tags to the bookmark.
+   b. Use AI analysis to categorize the bookmark.
+
+This process continues until all bookmarks are organized.
+
+4. Synchronize the organized bookmark list to your browser through the plugin.
+
+5. Display: Use beautiful charts to show various information analyzed from the bookmarks.
+
+This information is known only to you and won't be leaked. In the future, you can feed it to your own AI, making the AI understand you better, rather than being generic.
+
+## [How to Use ](https://bookmarks-ai.vercel.app/extension)
+
+1. Install the plugin
+2. Fill in your key
+3. Click run
+
+## Roadmap
+
+1. Analyze daily browsing history and provide a daily reading report.
+2. Query function to quickly find the website you want.
+3. Data export, allowing export in Q&A format for easy model training.
+
+## Development Guide
+
+1. The project uses the Plasmo framework for rapid Chrome extension development.
+2. Uses Next.js for frontend development.
+3. Tailwind CSS and Shadcn as CSS frameworks.
+4. Langchain for developing agents.
+5. Deployed on Vercel.
+
+Local development:
 
 ```bash
-pnpm dev
-# or
-npm run dev
+pnpm install
+
+# Run frontend
+npm run dev:next
+# Run plugin
+npm run dev:plasmo
 ```
-
-Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
-
-You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
-
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
-
-```bash
-pnpm build
-# or
-npm run build
-```
-
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
-
-## Submit to the webstores
-
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
