@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/sonner"
+import { Analytics } from "@vercel/analytics/react"
 import './globals.css'
 
 export const metadata = {
@@ -25,6 +26,7 @@ export default function RootLayout({
           duration={2000}
         />
       </body>
+      <Analytics />
     </html>
   )
 }
