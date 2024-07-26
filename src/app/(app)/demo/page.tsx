@@ -26,7 +26,6 @@ import { ApiKeyPanel } from "../../../components/ui/api-key-panel";
 import type { Bookmarks } from "webextension-polyfill";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@components/ui/alert-dialog";
 import chromeBookmarkScreenShotPng from "@assets/chrome-bookmark-screenshot.png";
-import { get, set, del } from 'idb-keyval'
 import { Input } from "@components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@components/ui/select";
 
@@ -400,7 +399,7 @@ const Page = () => {
 
                 <div className="flex gap-2 pt-4 flex-col justify-center max-w-7xl ">
                     <p >Maximum number of  bookmarks layers:</p>
-                    <Input max={3} min={1} onValueChange={v => setLayerNumber(v)} value={layerNumber} type="number"></Input>
+                    <Input max={3} min={1} onChange={e => setLayerNumber(e.target.value)} value={layerNumber} type="number"></Input>
                 </div>
 
                 <div className="flex gap-2 pt-4 flex-col justify-center  max-w-7xl ">

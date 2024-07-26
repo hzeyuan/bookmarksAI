@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef, useEffect, useImperativeHandle, forwardRef } from 'react';
 import { Markmap } from 'markmap-view';
 import { transformer } from './markmap';
