@@ -14,6 +14,7 @@ type ProcessBookmarkAgentChainInput = {
     folders: string[],
     allBookmarks?: Bookmarks.BookmarkTreeNode[],
     language: string,
+    layerNumber?: number,
     config?: {
         apiKey: string
         apiBaseUrl: string
@@ -24,17 +25,24 @@ const strParser = new StringOutputParser();
 
 const analyzeCurrentStructure = ChatPromptTemplate.fromMessages([
     ["system", `
-    You are an expert in optimizing folder structures for bookmarks. Analyze the provided bookmark list and create an overview of the current structure. Use chain-of-thought reasoning to break down your analysis:
+     You are an expert in optimizing folder structures for bookmarks. Analyze the provided bookmark list and create an overview of the current structure. Use chain-of-thought reasoning to break down your analysis:
     
-    1. Identify main categories
-    2. Analyze subcategories and their relationships
-    3. Evaluate naming conventions
-    4. Assess current depth and breadth
-    5. Identify potential areas for improvement
+    1. Identify main categories (top-level folders)
+    2. Analyze subcategories (lower-level folders) and their relationships to main categories
+    3. Evaluate naming conventions for all levels
+    4. Assess current breadth at each level
+    5. Identify potential areas for improvement while strictly maintaining a {layerNumber}-level structure
     
     Provide a detailed analysis with your reasoning for each step.
     
-    language: {language}
+    [CRITICAL INSTRUCTIONS - READ CAREFULLY]:
+    - The folder structure MUST HAVE EXACTLY {layerNumber} levels, no more and no less.
+    - Any proposed changes or improvements MUST adhere to the {layerNumber}-level limit.
+    - If the current structure exceeds {layerNumber} levels, focus on how to consolidate it.
+    - If the current structure has fewer than {layerNumber} levels, consider if and how to expand it appropriately.
+    
+    Language: {language}
+    
     Current bookmark folders:
     {folders}
     `]
@@ -42,17 +50,20 @@ const analyzeCurrentStructure = ChatPromptTemplate.fromMessages([
 
 const generateIdeas = ChatPromptTemplate.fromMessages([
     ["system", `
-Based on the analysis, generate 3 improved bookmark structures. For each:
-    1. Describe the structure
-    2. Explain its rationale
-    3. List pros and cons
-    4. Score it on: Comprehensiveness, Intuitiveness, Scalability, Depth (max 3 levels), Consistency
+Based on the analysis, generate 3 improved bookmark structures, each with a maximum of two levels. For each structure:
+    1. Describe the top-level categories and their subcategories
+    2. Explain the rationale behind this two-level organization
+    3. List pros and cons of this structure
+    4. Score it on: Comprehensiveness, Intuitiveness, Scalability, Consistency
 
     Current structure analysis:
     {analysis}
 
     All bookmarks:
     {bookmarks}
+
+
+    Remember: Each proposed structure must have no more than two levels of hierarchy.
     `]
 ]);
 
@@ -151,6 +162,8 @@ export const handleGenerateFolderAgent = async (
             ]),
             folders: () => _.compact(input.folders).join('\n'),
             bookmarks: () => bookmarksStr,
+            layerNumber: () => input.layerNumber || 2,
+            language: () => input.language,
         }),
         {
             ideas: RunnableSequence.from([

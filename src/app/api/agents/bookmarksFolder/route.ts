@@ -24,7 +24,8 @@ export async function POST(req: NextRequest) {
     const result = await handleGenerateFolderAgent({
         folders: input.folders,
         allBookmarks: input.allBookmarks,
-        language: input.language
+        language: input.language,
+        layerNumber: input.layerNumber || 2,
     }, {
         model,
         json: false,

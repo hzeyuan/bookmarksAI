@@ -26,7 +26,9 @@ import { ApiKeyPanel } from "../../../components/ui/api-key-panel";
 import type { Bookmarks } from "webextension-polyfill";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@components/ui/alert-dialog";
 import chromeBookmarkScreenShotPng from "@assets/chrome-bookmark-screenshot.png";
-
+import { get, set, del } from 'idb-keyval'
+import { Input } from "@components/ui/input";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@components/ui/select";
 
 const MemoizedBookmarksContainer = memo(BookmarksContainer);
 const BookmarksContainerWrapper = () => {
@@ -62,6 +64,8 @@ const Page = () => {
     const folders = useBookmarkStore((state) => state.folders);
     const router = useRouter();
     const isInstalledRef = useRef(false);
+    const [layerNumber, setLayerNumber] = React.useState(2);
+    const [language, setLanguage] = React.useState('english');
 
 
     const checkExtension = () => {
@@ -88,7 +92,6 @@ const Page = () => {
 
 
     const handleGenerateTags = async (newBookmarks: DDBookmarkTreeNode[], curFolders: string[]) => {
-        const userLanguage = navigator.language;
         const limit = pLimit(10);
         const processBookmark = async (bookmark, index) => {
             console.log('开始生成tag:', bookmark);
@@ -97,7 +100,7 @@ const Page = () => {
                 result = await generateTagsRequest({
                     bookmark,
                     categories: curFolders,
-                    language: userLanguage
+                    language: language || 'en'
                 });
             } catch (err) {
                 console.error('生成tag失败', err);
@@ -148,13 +151,13 @@ const Page = () => {
     }
 
     const handleGenerateNewFolder = async ({ folders, bookmarks }) => {
-        const userLanguage = navigator.language;
         try {
             setLoading(true);
             const newFolderMd = await requestGenerateNewFolder({
                 folders: folders,
                 bookmarks: [],
-                language: userLanguage
+                language: language || 'en',
+                layerNumber: layerNumber,
             });
             markmapRef.current?.updateMarkmap(newFolderMd);
             const newFolder = deserializeMarkdownToTree(_.compact(newFolderMd.split('\n')));
@@ -175,6 +178,8 @@ const Page = () => {
     };
 
     const handleWorkflowStart = async () => {
+
+
         console.log('handleWorkflowStart');
         if (isInstalledRef.current === false) {
             window.open('/extension', '_blank');
@@ -282,6 +287,8 @@ const Page = () => {
         });
     }
 
+
+
     function assignBookmarksToFolders(nestedFolders: DDBookmarkTreeNode[], bookmarks: DDBookmarkTreeNode[]): DDBookmarkTreeNode[] {
         const folderMap = new Map<string, DDBookmarkTreeNode>();
         function mapFolders(folder: DDBookmarkTreeNode) {
@@ -364,7 +371,6 @@ const Page = () => {
                             If you Press the confirm, new rebuild bookmarks will be sync to Chrome Bookmarks,
                             it not reversible, please make sure you have a backup.
                             when sync done, you can see in your chrome bookmarks
-
                             <Image className="py-4" src={chromeBookmarkScreenShotPng} alt={""}></Image>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
@@ -391,6 +397,34 @@ const Page = () => {
                         onClick={() => setOpen(true)}>Async to Chrome Bookmarks</Button>
                     <Button variant="destructive" onClick={() => { initWorkflow() }}>Clear Local Record</Button>
                 </div>
+
+                <div className="flex gap-2 pt-4 flex-col justify-center max-w-7xl ">
+                    <p >Maximum number of  bookmarks layers:</p>
+                    <Input max={3} min={1} onValueChange={v => setLayerNumber(v)} value={layerNumber} type="number"></Input>
+                </div>
+
+                <div className="flex gap-2 pt-4 flex-col justify-center  max-w-7xl ">
+                <p >Choose a language you would like to:</p>
+                    <Select value={language} onValueChange={v => setLanguage(v)}>
+                        <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="Select a language" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+                                <SelectLabel>Select a language</SelectLabel>
+                                <SelectItem value="english">English</SelectItem>
+                                <SelectItem value="chinese">Chinese</SelectItem>
+
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+
+
+
+
+
                 <p className="mt-8 text-lg text-slate-600 text-center">
                     AI automatically organizes and categorizes your browser bookmarks
                 </p>

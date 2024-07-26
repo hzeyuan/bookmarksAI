@@ -3,12 +3,14 @@ import type { Bookmarks } from "webextension-polyfill"
 export type HandleGenerateNewFolder = (args: {
     folders: string[],
     bookmarks: Bookmarks.BookmarkTreeNode[],
-    language?: string
+    language?: string,
+    layerNumber?: number
 }) => Promise<string>;
 export const requestGenerateNewFolder: HandleGenerateNewFolder = async ({
     folders,
     bookmarks,
-    language
+    language,
+    layerNumber
 }) => {
     const storedApiKey = localStorage.getItem('apikey');
     const storedApiBaseUrl = localStorage.getItem('apiBaseUrl') || 'https://api.openai.com/v1'
@@ -20,6 +22,7 @@ export const requestGenerateNewFolder: HandleGenerateNewFolder = async ({
                 folders: folders,
                 allBookmarks: bookmarks,
                 language: language,
+                layerNumber: layerNumber,
                 config: {
                     apiKey: storedApiKey,
                     apiBaseUrl: storedApiBaseUrl,

@@ -197,7 +197,7 @@ export function deserializeMarkdownToTree(markdownLines: string[]): Bookmarks.Bo
 
     const root: Bookmarks.BookmarkTreeNode = {
         id: generateId(),
-        title: 'Bookmarks Bar',
+        title: 'BookmarksAI',
         children: []
     };
     const stack: Bookmarks.BookmarkTreeNode[] = [root];

@@ -1,7 +1,7 @@
 {
   "name": "bookmarksAI",
   "displayName": "bookmarksAI",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Auto tag bookmarks with AI",
   "author": "yixtotieq@gmail.com",
   "scripts": {
@@ -22,6 +22,7 @@
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",

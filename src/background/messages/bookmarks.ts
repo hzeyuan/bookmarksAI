@@ -65,9 +65,9 @@ const handler: PlasmoMessaging.MessageHandler = async (req: any, res: any) => {
                 const rootBookmarkId = tree[0].children[0].id; // 获取书签根文件夹ID
                 // 删除所有现有书签
                 const children = await Browser.bookmarks.getChildren(rootBookmarkId);
-                for (const child of children) {
-                    await Browser.bookmarks.removeTree(child.id);
-                }
+                // for (const child of children) {
+                //     await Browser.bookmarks.removeTree(child.id);
+                // }
 
                 await createBookmarkTree(req.body.bookmarks)
             

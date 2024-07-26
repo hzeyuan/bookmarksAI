@@ -74,7 +74,7 @@ export const GenTagFlow = ({ ...props }) => {
                 category: key,
                 category_count: value.length,
             }));
-            console.log('newTags', newTags);
+            // console.log('newTags', newTags);
             if (tagCloudRef.current?.getVChartInstance()) {
                 handleUpdateCloudWithThrottle(newTags);
                 return true;

@@ -5,7 +5,7 @@ import * as _ from 'lodash-es';
 import { useMemo } from "react";
 
 export const BookmarksPanel = ({ bookmarkArray, nestedFolder }) => {
-    const curSelectedBookmarkId = useBookmarkNavStore(state => state.curSelectedBookmarkId) || 'Bookmarks Bar'
+    const curSelectedBookmarkId = useBookmarkNavStore(state => state.curSelectedBookmarkId) || 'BookmarksAI'
 
 
     const foldersAndBookmarks = useMemo(() => {
