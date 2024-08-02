@@ -4,6 +4,7 @@ import ChromeExtensionButton from './chrome-extension-button';
 import Image from 'next/image';
 import { sendToBackgroundViaRelay } from "@plasmohq/messaging"
 import { useRouter } from 'next/navigation';
+import sponsorSvg from '@assets/302.jpg';
 import { Zap } from 'lucide-react';
 const Hero = () => {
 
@@ -108,11 +109,15 @@ const Hero = () => {
 
                         <div className="">
                             <ChromeExtensionButton
-                            onClick={()=>{
-                                router.push('/extension')
-                            }}
+                                onClick={() => {
+                                    router.push('/extension')
+                                }}
                             ></ChromeExtensionButton>
                         </div>
+
+                        <a className=' flex' href="https://302.ai/">
+                            <Image className=' py-2 w-[400px]' width={1080} height={300} src={sponsorSvg.src} />
+                        </a>
 
                         <p>The project is still in the early stage, and the code is open-sourced on
                             <a
