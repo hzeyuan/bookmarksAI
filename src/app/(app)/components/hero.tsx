@@ -116,7 +116,7 @@ const Hero = () => {
                         </div>
 
                         <a className=' flex' href="https://302.ai/">
-                            <Image className=' py-2 w-[400px]' width={1080} height={300} src={sponsorSvg.src} />
+                            <Image className=' py-2 ' width={1080} height={300} src={sponsorSvg.src} />
                         </a>
 
                         <p>The project is still in the early stage, and the code is open-sourced on
